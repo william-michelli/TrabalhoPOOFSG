@@ -1,0 +1,4 @@
+livro;JK Rowling;Sextante;220;1;Harry Potter;disponivel
+periodico;Mensal;23;2006;2;Mundo Estranho;disponivel
+dvd;Documentario de Baleias;120;3;Baleias;disponivel
+livro;Dan Brown;Sextante;420;4;Codigo da Vinci;bloqueado

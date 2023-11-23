@@ -1,3 +1,0 @@
-Patricia Camargo;Hilário Fontana;559;Casa;Limoeiro;Porto Alegre;RS;98055-668;1;Medicina
-Matheus Santos;Jardim Belo;789;Apartamento 201;Virginios Rebeldes;Caxias do Sul;RS;99828-098;2;Engenharia
-Roberto Abreu;Santos Drumond;445;Casa;Laranjeiras;Porto Alegre;RS;99809-089;3;Ingles

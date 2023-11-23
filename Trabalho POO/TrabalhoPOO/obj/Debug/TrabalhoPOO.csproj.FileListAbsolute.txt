@@ -1,7 +1,0 @@
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\bin\Debug\TrabalhoPOO.exe.config
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\bin\Debug\TrabalhoPOO.exe
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\bin\Debug\TrabalhoPOO.pdb
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.AssemblyReference.cache
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.CoreCompileInputs.cache
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.exe
-C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.pdb

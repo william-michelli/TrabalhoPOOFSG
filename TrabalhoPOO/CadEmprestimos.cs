@@ -80,7 +80,7 @@ namespace TrabalhoPOO
                 if (emprestado.Item.Situacao == "emprestado" && emprestado.Data_Devolucao < DateTime.Now)
                 {
                     emprestado.Item.Situacao = "atrasado";
-                    Console.WriteLine($"\nSituação do item {emprestado.Item.Titulo} alterada para atrasado");
+                    //Console.WriteLine($"\nSituação do item {emprestado.Item.Titulo} alterada para atrasado");
                 } 
             }
         }
@@ -96,6 +96,19 @@ namespace TrabalhoPOO
                 }
             }
             return -1;
+        }
+
+        public bool VerificaUsuarioJaEmprestou(Usuario usuario)
+        {
+            for (var cont = 0; cont < posicao; cont++)
+            {
+                if (todosEmprestimos[cont].Usuario.Matricula == usuario.Matricula)
+                {
+                    Console.WriteLine($"Usuário já tem um item emprestado\n\n");
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

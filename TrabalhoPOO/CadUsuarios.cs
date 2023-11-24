@@ -48,10 +48,12 @@ namespace TrabalhoPOO
         {
             bool achou = false;
             int aux = 0;
-            while ((achou == false) && (aux < posicao))
+            while ((achou == false) && (aux <= posicao))
             {
                 if (usuarios[aux].Matricula == matricula)
                 {
+                    Console.Clear();
+                    Console.WriteLine($"{usuarios[aux].Nome} foi removido com exito\n");
                     achou = true;
                 }
                 else

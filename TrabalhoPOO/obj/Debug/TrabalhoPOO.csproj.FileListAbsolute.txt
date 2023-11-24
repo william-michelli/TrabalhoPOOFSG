@@ -5,3 +5,11 @@ C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.A
 C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.CoreCompileInputs.cache
 C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.exe
 C:\Users\William\Desktop\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.pdb
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.AssemblyReference.cache
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.SuggestedBindingRedirects.cache
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.csproj.CoreCompileInputs.cache
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.exe
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\obj\Debug\TrabalhoPOO.pdb
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\bin\Debug\TrabalhoPOO.exe.config
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\bin\Debug\TrabalhoPOO.exe
+D:\Programacao\POO\Trabalho POO\TrabalhoPOO\bin\Debug\TrabalhoPOO.pdb

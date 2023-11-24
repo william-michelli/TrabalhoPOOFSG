@@ -10,7 +10,7 @@ namespace TrabalhoPOO
     {
         private CadEmprestimos todosEmprestimos;
         private Acervo acervo;
-        private CadUsuarios cadUsuarios;
+     
         private EntradaDados entradaDados;
         private PersistenciaDados persistenciaDados;
 
@@ -18,7 +18,6 @@ namespace TrabalhoPOO
         {
             todosEmprestimos = new CadEmprestimos();
             acervo = new Acervo();
-            cadUsuarios = new CadUsuarios();
             entradaDados = new EntradaDados();
             persistenciaDados = new PersistenciaDados();
 
@@ -52,14 +51,14 @@ namespace TrabalhoPOO
             int opc = 0;
             int codigo = 0;
 
-            string autor, editora, titulo, situacao, periodicidade, assunto;
+            string autor, editora, titulo, situacao, periodicidade, assunto, matri;
             int paginas, identificacao, num, ano, duracao, id;
 
-            persistenciaDados.LeituraDados("usuarios.txt", cadUsuarios, endereco);
+            persistenciaDados.LeituraDados("usuarios.txt", listaUsuarios, endereco);
             persistenciaDados.LeituraDadosItens("acervo.txt", acervo);
 
             OpcoesMenu();
-            opc = entradaDados.LeInteiro("Informe a sua opção: ", 0, 9);
+            opc = entradaDados.LeInteiro("Informe a sua opção: ", 0, 11);
             while (opc != 0)
             {
                 switch (opc)
@@ -82,10 +81,10 @@ namespace TrabalhoPOO
                         string curso = entradaDados.LeString("Curso: ");
 
                         usuario = new Usuario(nome, enderecoUsuario, matricula, curso);
-                        cadUsuarios.Insere(usuario);
+                        
                         listaUsuarios.Insere(usuario);
 
-                        persistenciaDados.EscritaDados(cadUsuarios, "usuarios.txt");
+                        persistenciaDados.EscritaDados(listaUsuarios, "usuarios.txt");
                         Console.Clear();
                         break;
 
@@ -154,16 +153,16 @@ namespace TrabalhoPOO
                         Console.Clear();
                         Console.WriteLine("######## Emprestimo ########");
      
-                        string matri = entradaDados.LeString("Digite o seu número de matricula: ");
+                        matri = entradaDados.LeString("Digite o seu número de matricula: ");
                         id = entradaDados.LeInteiro("Digite o codigo do item que deseja retirar: ");
 
                         //Pesquisa pelo matricula do usuario
-                        int resultadoPesquisaMatri = cadUsuarios.PesquisaMatricula(matri);
+                        int resultadoPesquisaMatri = listaUsuarios.PesquisaMatricula(matri);
                         if(resultadoPesquisaMatri >= 0)
                         {
                             Console.Clear();
                             //Pega o usuario pelo index
-                            Usuario user = cadUsuarios.GetUsuario(resultadoPesquisaMatri);
+                            Usuario user = listaUsuarios.GetUsuario(resultadoPesquisaMatri);
 
                             //Pesquisa pelo identificacao do item e pesquisa
                             int resultadoPesquisaId = acervo.PesquisaId(id);
@@ -171,27 +170,32 @@ namespace TrabalhoPOO
 
                             if (itemDesejado.Situacao == "disponivel")
                             {
-                                emprestimo = new Emprestimo();   
+                                emprestimo = new Emprestimo();
 
-                                if(itemDesejado is Livro)
+                                //FAZ VERIFICAÇÃO
+                                if (todosEmprestimos.VerificaUsuarioJaEmprestou(user) == false)
                                 {
-                                    emprestimo.Emprestar(user, itemDesejado, 7);
-                                    Console.WriteLine($"Item {itemDesejado.Titulo} emprestado, devolução em 7 dias\nCodigo: {emprestimo.Identificacao}");
-                                }
+                                    if (itemDesejado is Livro)
+                                    {
+                                        emprestimo.Emprestar(user, itemDesejado, 7);
+                                        Console.WriteLine($"Item {itemDesejado.Titulo} emprestado, devolução em 7 dias\nCodigo: {emprestimo.Identificacao}");
+                                    }
 
-                                if (itemDesejado is Periodico)
-                                {
-                                    emprestimo.Emprestar(user, itemDesejado, 4);
-                                    Console.WriteLine($"Item {itemDesejado.Titulo} emprestado, devolução em 4 dias\nCodigo: {emprestimo.Identificacao}");
-                                }
+                                    if (itemDesejado is Periodico)
+                                    {
+                                        emprestimo.Emprestar(user, itemDesejado, 4);
+                                        Console.WriteLine($"Item {itemDesejado.Titulo} emprestado, devolução em 4 dias\nCodigo: {emprestimo.Identificacao}");
+                                    }
 
-                                if (itemDesejado is Dvd)
-                                {
-                                    emprestimo.Emprestar(user, itemDesejado, 2);
-                                    Console.WriteLine($"Item {itemDesejado.Titulo} emprestado, devolução em 2 dias\nCodigo: {emprestimo.Identificacao}");
-                                }
+                                    if (itemDesejado is Dvd)
+                                    {
+                                        emprestimo.Emprestar(user, itemDesejado, 2);
+                                        Console.WriteLine($"Item {itemDesejado.Titulo} emprestado, devolução em 2 dias\nCodigo: {emprestimo.Identificacao}");
+                                    }
 
-                                todosEmprestimos.Insere(emprestimo);
+                                    todosEmprestimos.Insere(emprestimo);
+                                }
+ 
                             }
                             else
                             {
@@ -236,9 +240,9 @@ namespace TrabalhoPOO
                     case 5:
                         Console.Clear();
                         Console.WriteLine("######## TODOS USUÁRIOS ########\n");
-                        for (int i = 0; i <= cadUsuarios.Tamanho(); i++)
+                        for (int i = 0; i <= listaUsuarios.Tamanho(); i++)
                         {
-                            Console.WriteLine($"{cadUsuarios.GetUsuario(i)}");
+                            Console.WriteLine($"{listaUsuarios.GetUsuario(i)}");
                         }
                         Console.Write("Pressione ENTER para continuar... ");
                         Console.ReadLine();                
@@ -247,6 +251,7 @@ namespace TrabalhoPOO
 
                     case 6:
                         Console.Clear();
+                        todosEmprestimos.Atrasos();
                         Console.WriteLine("######## TODOS LIVROS ########\n");
                         for (int i = 0; i <= acervo.Tamanho(); i++)
                         {
@@ -262,6 +267,7 @@ namespace TrabalhoPOO
 
                     case 7:
                         Console.Clear();
+                        todosEmprestimos.Atrasos();
                         Console.WriteLine("######## TODOS PERIODICOS ########\n");
                         for (int i = 0; i <= acervo.Tamanho(); i++)
                         {
@@ -277,6 +283,7 @@ namespace TrabalhoPOO
 
                     case 8:
                         Console.Clear();
+                        todosEmprestimos.Atrasos();
                         Console.WriteLine("######## TODOS DVDs ########\n");
                         for (int i = 0; i <= acervo.Tamanho(); i++)
                         {
@@ -293,13 +300,13 @@ namespace TrabalhoPOO
 
                     case 9:
                         Console.Clear();
+                        todosEmprestimos.Atrasos();
                         Console.WriteLine("########## TODOS EMPRESTIMOS ATE AGORA ##########\n");
                         for (int i = 0; i <= todosEmprestimos.Tamanho(); i++)
                         {
                             Console.WriteLine($"{todosEmprestimos.GetEmprestimo(i)}\n");
 
                         }
-                        //todosEmprestimos.Atrasos();
                         Console.Write("Pressione ENTER para continuar... ");
                         Console.ReadLine();
                         Console.Clear();
@@ -307,11 +314,46 @@ namespace TrabalhoPOO
 
 
                     case 10:
-                        listaUsuarios.RemoveUsuario("55988312");
+                        Console.Clear();
+                        Console.WriteLine("########## REMOVER USUÁRIO ##########\n");
+                        
+                        matri = entradaDados.LeString("Digite a matricula do usuário que deseja excluir: ");
+
+                        resultadoPesquisaMatri = listaUsuarios.PesquisaMatricula(matri);
+                        Usuario us = listaUsuarios.GetUsuario(resultadoPesquisaMatri);    
+
+                        if (todosEmprestimos.VerificaUsuarioJaEmprestou(us) == false)
+                        {
+                            listaUsuarios.RemoveUsuario(matri);
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Usuario ainda tem um emprestimo ativo\n\n"); 
+                        }
+
+                        persistenciaDados.EscritaDados(listaUsuarios, "usuarios.txt");
                         break;
 
                     case 11:
-                        acervo.RemoveItemAcervo(2);
+                        Console.Clear();
+                        Console.WriteLine("########## REMOVER ITEM ACERVO ##########\n");
+                        identificacao = entradaDados.LeInteiro("Digite a identificação do item que deseja excluir: ");
+
+                        int resultadoPes = acervo.PesquisaId(identificacao);
+                        ItemBiblioteca it = acervo.GetItemAcervo(resultadoPes);
+
+                        if (it.Situacao == "disponivel")
+                        {
+                            acervo.RemoveItemAcervo(identificacao);
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Item não está disponivel, não pode ser deletado\n\n");
+                        }
+    
+                        persistenciaDados.EscritaDadosItens(acervo, "acervo.txt");
                         break;
 
                     default:
@@ -320,7 +362,7 @@ namespace TrabalhoPOO
                 }
 
                 OpcoesMenu();
-                opc = entradaDados.LeInteiro("Informe a sua opção: ", 0, 9);
+                opc = entradaDados.LeInteiro("Informe a sua opção: ", 0, 11);
             }
         }
     }

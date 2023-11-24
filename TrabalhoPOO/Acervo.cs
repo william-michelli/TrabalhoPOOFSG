@@ -52,6 +52,8 @@ namespace TrabalhoPOO
             {
                 if (acervo[aux].Identificacao == identificacao)
                 {
+                    Console.Clear();
+                    Console.WriteLine($"{acervo[aux].Titulo} foi removido com exito\n");
                     achou = true;
                 }
                 else

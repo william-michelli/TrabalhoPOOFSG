@@ -17,7 +17,6 @@ namespace TrabalhoPOO
         static void Main(string[] args)
         {
             Program tst = new Program();
-            Console.ReadLine();
         }
 
     }

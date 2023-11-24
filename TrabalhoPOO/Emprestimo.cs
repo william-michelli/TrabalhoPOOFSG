@@ -21,14 +21,13 @@ namespace TrabalhoPOO
             Random rnd = new Random();
             int random = rnd.Next(111, 999);
 
-
             this.identificacao = random;
             this.usuario = usuario;
             this.item = item;
             this.data_emprestimo = DateTime.Now;
             this.data_devolucao = DateTime.Now.AddDays(prazo);
 
-            item.Situacao = "emprestado";
+            item.Situacao = "emprestado";   
         }
         public void Retorna()
         {
@@ -52,6 +51,12 @@ namespace TrabalhoPOO
             set { item = value; }
         }
 
+        public Usuario Usuario
+        {
+            get { return usuario; }
+            set { usuario = value; }
+        }
+
         public DateTime Data_Devolucao
         {
             get { return data_devolucao; }
@@ -64,8 +69,8 @@ namespace TrabalhoPOO
             string res = "Identificação Emprestimo: " + identificacao + "\nUsuario: " + usuario.Nome + "\nItem: " + item.Titulo + "\nData Emprestimo: " + data_emprestimo + "\nData Devolucao: " + data_devolucao;
             return res;
         }
+
+    
+
     }
-
-  
-
 }

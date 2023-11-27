@@ -21,7 +21,7 @@ namespace TrabalhoPOO
 
         public override string ToString()
         {
-            string res = "Nome: " + nome + "\nEndereco: " + endereco.ToString() + "Matricula: " + matricula + "- Curso: " + curso + "\n";
+            string res = "Nome: " + nome + "\n" + endereco.ToString() + "Matricula: " + matricula + " - Curso: " + curso + "\n";
             return res;
         }
 

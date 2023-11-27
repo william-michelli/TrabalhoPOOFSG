@@ -86,7 +86,7 @@ namespace TrabalhoPOO
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Erro!\n" + ex.Message);
+    
                 }      
             }
         }
